@@ -25,7 +25,7 @@ $(COMMONFORM):
 .PHONY: clean check
 
 check: $(SOURCES:mustache=commonform)
-	bash -c "for file in *.commonform; do commonform lint < \$$file ; done"
+	bash -c "for file in ${SOURCES:mustache=commonform}; do commonform lint < \$$file ; done"
 
 clean:
 	rm -rf $(TARGETS)
