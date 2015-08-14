@@ -1,1 +1,2 @@
-{ "beatles": [ "John", "Paul", "George", "Ringo" ] }
+{ "groovy": false,
+  "beatles": [ "John", "Paul", "George", "Ringo" ] }
