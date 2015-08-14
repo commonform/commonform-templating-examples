@@ -35,4 +35,4 @@ check: $(SOURCES:mustache=commonform)
 	bash -c "for file in ${SOURCES:mustache=commonform}; do commonform lint < \$$file ; done"
 
 clean:
-	rm -rf $(TARGETS)
+	rm -rf $(TARGETS) node_modules
