@@ -6,4 +6,4 @@ Edit any `.mustache` file in this directory, writing Common Form markup and Must
 
 Run `make` to generate Microsoft Word and plain-text renderings of the template.
 
-Run `make test` to check the project for drafting errors.
+Run `make check` to check the project for drafting errors.

@@ -22,9 +22,9 @@ $(COMMONFORM):
 %.commonform: %.mustache %.json $(MUSTACHE)
 	./node_modules/.bin/mustache "$*.json" "$*.mustache" > $@
 
-.PHONY: clean test
+.PHONY: clean check
 
-test: $(SOURCES:mustache=commonform)
+check: $(SOURCES:mustache=commonform)
 	bash -c "for file in *.commonform; do commonform lint < \$$file ; done"
 
 clean:
