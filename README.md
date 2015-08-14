@@ -1,12 +1,18 @@
-Example [Mustache](https://mustache.github.io) to [Common Form](https://commonform.github.io) to Microsoft Word build chain
+Use templating to write [Common Forms](https://commonform.github.io)
+
+# Templating Engines
+
+- [Mustache](https://mustache.github.io)
+
+- [Embedded JavaScript](http://www.embeddedjs.com/)
 
 # Use
 
-Create a `.mustache` template in this directory, writing Common Form markup and Mustache template tags. Then write a `.json` file  with the same name containing template variables and a `.title.txt` file with a title for the document. An example is included.
+Create a template file with a `.mustache` or `.ejs` extension in this directory, writing Common Form markup and template tags. Then write a `.json` file  of the same name containing template variables and a `.title.txt` file with a title for the document. Examples are included for each supported templating engine.
 
-Run `make` to generate Microsoft Word and plain-text renderings of each template.
+Run `make` to generate Microsoft Word (`.docx`)and plain-text (`.txt`) renderings of each template.
 
-Run `make check` to check the project for drafting errors.
+Run `make check` to check the project for drafting errors, like broken cross-references.
 
 # Prerequisites
 
