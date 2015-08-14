@@ -1,8 +1,10 @@
-SOURCES=$(wildcard *.mustache)
+TEMPLATES=$(wildcard *.mustache) $(wildcard *.ejs)
+SOURCES=$(addsuffix .commonform, $(basename $(TEMPLATES)))
 MUSTACHE=node_modules/.bin/mustache
 COMMONFORM=node_modules/.bin/commonform
+EJS=node_modules/.bin/ejs-cli
 
-TARGETS=$(SOURCES:mustache=docx) $(SOURCES:mustache=txt) $(SOURCES:mustache=commonform)
+TARGETS=$(SOURCES:commonform=docx) $(SOURCES:commonform=txt) $(SOURCES)
 
 all: $(TARGETS)
 
@@ -12,14 +14,20 @@ $(MUSTACHE):
 $(COMMONFORM):
 	npm install commonform-cli
 
+$(EJS):
+	npm install ejs-cli
+
 %.docx: %.commonform %.title.txt $(COMMONFORM)
-	./node_modules/.bin/commonform render --format docx --title "$(shell cat $*.title.txt)" < $*.commonform > $@
+	$(COMMONFORM) render --format docx --title "$(shell cat $*.title.txt)" < $*.commonform > $@
 
 %.txt: %.commonform $(COMMONFORM)
-	./node_modules/.bin/commonform render --format terminal < $*.commonform > $@
+	$(COMMONFORM) render --format terminal < $*.commonform > $@
 
 %.commonform: %.mustache %.json $(MUSTACHE)
-	./node_modules/.bin/mustache $*.json $*.mustache > $@
+	$(MUSTACHE) $*.json $*.mustache > $@
+
+%.commonform: %.ejs %.json $(EJS)
+	$(EJS) --options $*.json $*.ejs > $@
 
 .PHONY: clean check
 
